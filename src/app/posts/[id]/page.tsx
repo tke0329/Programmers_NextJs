@@ -1,3 +1,8 @@
+'use client'
+
+import { useState } from 'react'
+
 export default function detailPage() {
-    return <>상페</>
+    useState
+    return <>제품 상세페이지</>
 }

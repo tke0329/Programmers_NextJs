@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
@@ -23,11 +24,32 @@ export default function RootLayout({
     children: React.ReactNode
 }>) {
     return (
-        <html
-            lang="ko"
-            className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-        >
-            <body>{children}</body>
-        </html>
+        <>
+            <html
+                lang="ko"
+                className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+            >
+                <body>
+                    <header>
+                        <nav className="flex">
+                            <Link
+                                href="/"
+                                className="p-2 rounded hover:bg-gray-700"
+                            >
+                                메인!!
+                            </Link>
+                            <Link
+                                href="/posts"
+                                className="p-2 rounded hover:bg-gray-700"
+                            >
+                                게시글!!!!
+                            </Link>
+                        </nav>
+                    </header>
+                    {children}
+                    <footer className="p-2">풋터</footer>
+                </body>
+            </html>
+        </>
     )
 }
