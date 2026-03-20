@@ -1,13 +1,38 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import Link from 'next/link'
+
+interface Form {
+    id: number
+    title: string
+    body: string
+    tag: []
+    reactions: {}
+    views: number
+    userId: number
+}
 
 export default function PostList() {
+    const [posts, setPosts] = useState([])
+
+    useEffect(() => {
+        fetch('https://dummyjson.com/posts')
+            .then((res) => res.json())
+            .then((data) => setPosts(data.posts))
+    }, [])
+
     return (
         <>
-            <ul>게시글1</ul>
-            <ul>게시글2</ul>
-            <ul>게시글3</ul>
+            <ul>
+                {posts.map((e: Form) => (
+                    <Link href={`/posts/${e.id}`} className="p-2">
+                        <li key={e.id}>
+                            {e.id}. {e.title}
+                        </li>
+                    </Link>
+                ))}
+            </ul>
         </>
     )
 }

@@ -1,8 +1,10 @@
 'use client'
 
 import { useState } from 'react'
+import { useParams } from 'next/navigation'
 
 export default function detailPage() {
-    useState
-    return <>제품 상세페이지</>
+    const { id } = useParams()
+
+    return <>게시글 아이디: {id}</>
 }
