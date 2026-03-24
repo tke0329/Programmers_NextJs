@@ -19,15 +19,20 @@ export default function PostList() {
     // }
 
     const fetchPost = async () => {
-        let { data: post, error } = await supabase.from('posts').select('*')
+        let { data: post, error } = await supabase
+            .from('posts')
+            .select('*')
+            .order('id', { ascending: true })
         setPosts(post)
     }
 
-    useEffect(() => {}, [])
-    fetchPost()
+    useEffect(() => {
+        fetchPost()
+    }, [])
+
     return (
         <>
-            <ul>
+            <ul className="flex:column p-4">
                 {posts.map((e: Post) => (
                     <Link href={`/posts/${e.id}`} className="p-2">
                         <li key={e.id}>
@@ -35,6 +40,12 @@ export default function PostList() {
                         </li>
                     </Link>
                 ))}
+                <Link
+                    href="/posts/new"
+                    className=" p-2 rounded hover:bg-gray-700"
+                >
+                    글쓰기
+                </Link>
             </ul>
         </>
     )
